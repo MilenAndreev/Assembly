@@ -1,0 +1,75 @@
+//1) Въведете 3 числа от клавиатурата, изведете броя на положителните числа и сумата им;
+
+void firstProblem(int a, int b, int c){
+int positive = 0;
+int sum = 0;
+
+_asm{	
+	mov edx, sum	;Сравненията за  a, b и c  са идентични.
+	mov eax, a
+	cmp eax, 0	;Сравняваме А с нула
+	jl negative1	;Ако А е отрицателно
+	jge positive1	;Ако А е положетелно
+
+	negative1: 
+	add edx, eax	;В edx ще пазим общата сума
+	jmp next1
+	
+	positive1:
+	add edx, eax
+	mov ecx, positive	;В ecx ще пазим броят положителни
+	add ecx, 1
+	
+	next1:
+	mov eax, b
+	cmp eax, 0
+	jl negative2
+	jge positive2
+
+	negative2: 
+	add edx, eax
+	jmp next2
+	
+	positive2:
+	add edx, eax
+	mov ecx, positive
+	add ecx, 1
+
+	next2:
+	mov eax, c
+	cmp eax, 0
+	jl negative3
+	jge positive3
+
+	negative3: 
+	add edx, eax
+	jmp next3
+	
+	positive3:
+	add edx, eax
+	mov ecx, positive
+	add ecx, 1
+	
+	next3:
+	mov sum, edx
+	mov positive, ecx
+
+}
+
+cout << "Broyat (+) chisla e: " << positive << endl;
+cout << "Sborut na chislata e: " << sum << endl;
+
+
+}
+
+
+
+
+int main(){
+
+int a1, a2, a3;
+cout << "Vuvedete tri chisla, programata shte izvede broyat i sumata im: " << endl;
+cin >> a1 >> a2 >> a3;
+firstProblem(a1, a2, a3);
+
+}

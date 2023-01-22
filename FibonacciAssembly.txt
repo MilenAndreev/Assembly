@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+
+int Fibonacci(int n) {
+
+	int sum = 0;
+	int first = 0;
+	int second = 1;
+	int result = 1;
+
+	_asm {
+
+		mov eax, 0
+		mov ebx, 1
+		dec n
+		dec n
+		mov ecx, n 
+
+		for:
+		
+		add eax, ebx
+		mov sum, eax
+		mov eax, ebx
+		mov ebx, sum 
+		add result, ebx
+
+		dec n
+		cmp n, 0
+		jg for
+
+
+
+	}
+
+
+	cout << sum << endl << result;
+
+}
+
+
+
+int main(){
+
+
+	Fibonacci(10);
+
+
+
+
+}

@@ -1,0 +1,45 @@
+//2 Намерете най-голямото число от 3 , въведени от клавиатурата.
+
+void secondProblem(int a, int b, int c){
+int max;
+
+_asm{
+	mov eax, a
+	mov eax, b
+	mov eax, c
+
+	cmp eax, ebx
+	jl firstLoop
+	cmp eax, ecx
+	jl secondLoop
+	mov max, eax
+	jmp exit
+
+	firstLoop:
+	cmp ebx, ecx
+	jl thirdLoop
+	mov max, ebx
+	jmp exit
+
+	secondLoop:
+	mov max, ecx
+
+	exit:
+}
+
+cout << "Biggest num is " << max; 
+
+}
+
+
+
+
+int main(){
+
+
+int b1, b2, b3;
+cout << "Vuvedete tri chisla, programata shte izvede nai-golqmoto: "<< endl;
+cin >> b1 >> b2 > b3;
+secondProblem(b1, b2, b3);
+
+}

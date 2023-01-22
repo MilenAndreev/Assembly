@@ -1,0 +1,68 @@
+//3) Подредете 3 числа в низходящ ред с вложени if на асемблер.
+
+void thirdProblem(int a, int b, int c){
+int first;
+int second;
+int third;
+
+
+_asm{
+	mov eax, a
+	mov ebx, b
+	mov ecx, c
+
+	cmp eax, ebx
+	jl firstLoop
+	mov first, eax
+	mov second, ebx
+	jmp next1
+
+		firstLoop:
+		mov first, ebx
+		mov second, eax
+	
+	next1:
+	mov eax, first
+	mov ebx, second
+	cmp ecx, eax
+	jl secondLoop
+	mov third, ebx
+	mov second, eax
+	mov first, ecx
+	jmp end
+
+		secondLoop:
+		cmp ecx, ebx
+		jl thirdLoop
+		mov third, ebx
+		mov second, ecx
+		mov first, eax
+		jmp end
+
+			thirdLoop:		
+			mov first, eax
+			mov second, ebx
+			mov third, ecx
+		
+
+	end:
+	
+
+}
+
+cout << "Podredeni ot malko kum golyamo: " << first << ", " << second << ", " << third;
+
+
+}
+
+
+
+int main(){
+
+
+int c1, c2, c3;
+cout << "Vuvedete tri chisla, programata shte gi izvede ot nisko kum golqmo: " << endl;
+cin >> c1 >> c2>> c3;
+thirdProblem(c1, c2, c3);
+
+}
